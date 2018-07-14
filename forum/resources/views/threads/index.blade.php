@@ -15,6 +15,7 @@
                             {{ $thread->body }}
                         </div>   
                     </article>
+                    <hr>
                     @endforeach
                 </div>
             </div>
