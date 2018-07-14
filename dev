@@ -131,11 +131,7 @@ if [ $# -gt 0 ]; then
     # pass-thru any extra arguments to php-unit
     elif [ "$1" == "test" ]; then
         shift 1
-        if [ "$EXEC" == "yes" ]; then
-            $COMPOSE exec app ./vendor/bin/phpunit "$@"
-        else
-            $COMPOSE run --rm -w $WORKDIR app ./vendor/bin/phpunit "$@"
-        fi        
+        $COMPOSE run --rm -w $WORKDIR app ./vendor/bin/phpunit "$@"
 
     # If "node" is used, run commands inside node-vue-cli container
     elif [ "$1" == "node" ]; then
