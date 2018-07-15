@@ -121,11 +121,7 @@ if [ $# -gt 0 ]; then
     # inside a new container
     elif [ "$1" == "composer" ]; then
         shift 1     
-        if [ "$EXEC" == "yes" ]; then
-            $COMPOSE exec app composer "$@"
-        else
-            $COMPOSE run -u root --rm -w $WORKDIR app composer "$@"
-        fi
+        $COMPOSE run -u root --rm -w $WORKDIR app composer "$@"
 
     # If "test" is used, run unit tests,
     # pass-thru any extra arguments to php-unit
