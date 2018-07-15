@@ -101,11 +101,7 @@ if [ $# -gt 0 ]; then
     # if "artisan" is used, pass-thru to "artisan"
     elif [ "$1" == "bash" ]; then
         shift 1
-        if [ "$EXEC" == "yes" ]; then
-            $COMPOSE exec app bash
-        else
-            $COMPOSE run --rm -w $WORKDIR app bash
-        fi
+        $COMPOSE run --rm -w $WORKDIR app bash
 
     # if "artisan" is used, pass-thru to "artisan"
     elif [ "$1" == "php" ]; then
