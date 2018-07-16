@@ -13,23 +13,23 @@ class ParticipateInForumTest extends TestCase
     /** @test */
     function unauthenticated_user_may_not_add_replies()
     {
-        $this->expectException('Illuminate\Auth\AuthenticationException');
-
-        $this->post('threads/1/replies', []);   
+        $this->withExceptionHandling()
+            ->post('/threads/some-channel/1/replies', [])
+            ->assertRedirect('/login');
     }
 
     /** @test */
     function an_authenticated_user_may_participate_in_forum_threads()
     {
         //Given we have a authenticated user
-        $user = factory('App\User')->create();
-        $this->be($user);
+        $this->signIn();
 
         //And existing thread
-        $thread = factory('App\Thread')->create();
+        $thread = create('App\Thread');
         
         //When the user adds a reply to the thread
-        $reply = factory('App\Reply')->make();
+        $reply = create('App\Reply');
+
         $this->post($thread->path().'/replies', $reply->toArray());
 
         //Then their reply should be visible on the page
