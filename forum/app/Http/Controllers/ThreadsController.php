@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Channel;
 use App\Thread;
 use App\Filters\ThreadFilters;
-use App\User;
 use Illuminate\Http\Request;
 
 class ThreadsController extends Controller
