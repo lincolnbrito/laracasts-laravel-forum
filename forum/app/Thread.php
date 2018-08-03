@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Thread extends Model
 {
+    use RecordsActivity;
+
     protected $guarded = [];
 
     protected $with = ['creator', 'channel'];
@@ -21,19 +23,6 @@ class Thread extends Model
         static::deleting(function($thread){
             $thread->replies()->delete();
         });
-
-        static::created(function($thread){
-            $thread->recordActivity('created');
-        });
-    }
-
-    protected function recordActivity($event) {
-        Activity::create([
-            'user_id' => auth()->id(),
-            'type' => $this->getActivityType($event),
-            'subject_id' => $this->id,
-            'subject_type' => get_class($this)
-        ]);
     }
 
     public function path()
@@ -64,16 +53,6 @@ class Thread extends Model
     public function scopeFilter($query, $filters)
     {
         return $filters->apply($query);
-    }
-
-    /**
-     * @param $event
-     * @return string
-     * @throws \ReflectionException
-     */
-    protected function getActivityType($event)
-    {
-        return $event . '_' . strtolower((new \ReflectionClass($this))->getShortName());
     }
 
 }
