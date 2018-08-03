@@ -26,6 +26,7 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::before(function($user){
+            //simula um administrador
             if($user->name == 'fulano'){
                 return true;
             }

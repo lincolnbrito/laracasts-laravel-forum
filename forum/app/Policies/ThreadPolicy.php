@@ -14,9 +14,10 @@ class ThreadPolicy
     public function before($user)
     {
         //autorização por policy
-        if($user->name == 'fulano'){
-            return false;
-        }
+        //simula um administrador
+//        if($user->name == 'fulano'){
+//            return false;
+//        }
     }
 
     /**
