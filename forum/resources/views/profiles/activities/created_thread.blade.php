@@ -1,0 +1,1 @@
+{{ $profileUser->name }} published a thread

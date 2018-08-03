@@ -11,30 +11,35 @@
                     </h1>
                 </div>
 
-                @foreach($threads as $thread)
+                @foreach($activities as $activity)
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <div class="level">
                                 <span class="flex">
-                                    <a href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }}</a> posted:
-                                    <a href="{{ $thread->path() }}">{{ $thread->title }}</a>
+                                    @include("profiles.activities.{$activity->type}")
+                                    {{--<a href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }}</a> posted:--}}
+                                    {{--<a href="{{ $thread->path() }}">{{ $thread->title }}</a>--}}
                                 </span>
-                                <span>{{ $thread->created_at->diffForHumans() }}</span>
+                                <span>
+                                    {{--{{ $thread->created_at->diffForHumans() }}--}}
+                                </span>
                             </div>
                         </div>
 
                         <div class="panel-body">
                             <article>
-                                <h4>{{ $thread->title }}</h4>
+                                <h4>
+                                    {{--{{ $thread->title }}--}}
+                                </h4>
                                 <div class="body">
-                                    {{ $thread->body }}
+                                    {{--{{ $thread->body }}--}}
                                 </div>
                             </article>
                         </div>
                     </div>
                 @endforeach
 
-                {{$threads->links()}}
+{{--                {{$threads->links()}}--}}
             </div>
         </div>
     </div>
