@@ -125,28 +125,28 @@ if [ $# -gt 0 ]; then
         shift 1
         $COMPOSE run --rm -w $WORKDIR app ./vendor/bin/phpunit "$@"
 
-    # If "node" is used, run commands inside node-vue-cli container
+    # If "node" is used, run commands inside vue-cli container
     elif [ "$1" == "node" ]; then
         shift 1
         if [ "$EXEC" == "yes" ]; then
-            $COMPOSE exec node-vue-cli "$@"
+            $COMPOSE exec vue-cli "$@"
         else
-            $COMPOSE run --rm -w $WORKDIR node-vue-cli "$@"
+            $COMPOSE run --rm -w $WORKDIR vue-cli "$@"
         fi       
         
 
-    # If "vue" is used, run vue from node-vue-cli container
+    # If "vue" is used, run vue from vue-cli container
     elif [ "$1" == "vue" ]; then
         shift 1        
-        $COMPOSE run --rm -w $WORKDIR node-vue-cli vue "$@"        
+        $COMPOSE run --rm -w $WORKDIR vue-cli vue "$@"
     
-    # If "angular" is used, run angular from node-angular-cli container
+    # If "angular" is used, run angular from angular-cli container
     elif [ "$1" == "angular" ]; then
         shift 1
         if [ "$EXEC" == "yes" ]; then
-            $COMPOSE exec node-angular-cli ng "$@"
+            $COMPOSE exec angular-cli ng "$@"
         else
-            $COMPOSE run --rm -w $WORKDIR node-angular-cli ng "$@"
+            $COMPOSE run --rm -w $WORKDIR angular-cli ng "$@"
         fi        
         
     # If "npm" is used, run npm
@@ -154,9 +154,9 @@ if [ $# -gt 0 ]; then
     elif [ "$1" == "npm" ]; then        
         shift 1
         if [ "$EXEC" == "yes" ]; then
-            $COMPOSE exec node-vue-cli npm "$@"
+            $COMPOSE exec vue-cli npm "$@"
         else
-            $COMPOSE run --rm -w $WORKDIR node-vue-cli npm "$@"   
+            $COMPOSE run --rm -w $WORKDIR vue-cli npm "$@"
         fi
          
     # If "yarn" is used, run yarn
@@ -164,27 +164,27 @@ if [ $# -gt 0 ]; then
     elif [ "$1" == "yarn" ]; then        
         shift 1
         if [ "$EXEC" == "yes" ]; then
-            $COMPOSE exec node-vue-cli yarn "$@"
+            $COMPOSE exec vue-cli yarn "$@"
         else
-            $COMPOSE run --rm -w $WORKDIR node-vue-cli yarn "$@"
+            $COMPOSE run --rm -w $WORKDIR vue-cli yarn "$@"
         fi
     
-    # If "gulp" is used, run gulp from node-vue-cli container
+    # If "gulp" is used, run gulp from vue-cli container
     elif [ "$1" == "gulp" ]; then
         shift 1
         if [ "$EXEC" == "yes" ]; then
-            $COMPOSE exec node-vue-cli gulp "$@"
+            $COMPOSE exec vue-cli gulp "$@"
         else
-            $COMPOSE run --rm -w $WORKDIR node-vue-cli gulp "$@"
+            $COMPOSE run --rm -w $WORKDIR vue-cli gulp "$@"
         fi        
     
-    # If "webpack" is used, run webpack from node-vue-cli container
+    # If "webpack" is used, run webpack from vue-cli container
     elif [ "$1" == "webpack" ]; then
         shift 1
         if [ "$EXEC" == "yes" ]; then
-            $COMPOSE exec node-vue-cli webpack "$@"
+            $COMPOSE exec vue-cli webpack "$@"
         else
-            $COMPOSE run --rm -w $WORKDIR node-vue-cli webpack "$@"
+            $COMPOSE run --rm -w $WORKDIR vue-cli webpack "$@"
         fi     
        
     # Else, pass-thru args to docker-compose

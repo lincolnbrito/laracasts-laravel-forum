@@ -16,6 +16,14 @@ services:
      - mysql      
     networks:
      - sdnet 
+  vue-cli:
+    restart: always
+    image: lincolnbrito/vue-cli
+    volumes:
+      - ${APP_DIR}/:/var/www/html
+      - ${YARN_CACHE_DIR}:${YARN_CACHE_DIR_CONTAINER}
+    networks:
+      - sdnet
   mysql:
     image: mysql:5.7
     env_file: .env
