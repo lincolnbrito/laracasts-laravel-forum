@@ -128,12 +128,7 @@ if [ $# -gt 0 ]; then
     # If "node" is used, run commands inside vue-cli container
     elif [ "$1" == "node" ]; then
         shift 1
-        if [ "$EXEC" == "yes" ]; then
-            $COMPOSE exec vue-cli "$@"
-        else
-            $COMPOSE run --rm -w $WORKDIR vue-cli "$@"
-        fi       
-        
+        $COMPOSE run --rm -w $WORKDIR vue-cli "$@"
 
     # If "vue" is used, run vue from vue-cli container
     elif [ "$1" == "vue" ]; then
