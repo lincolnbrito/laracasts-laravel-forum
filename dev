@@ -148,11 +148,7 @@ if [ $# -gt 0 ]; then
     # from our node container
     elif [ "$1" == "npm" ]; then        
         shift 1
-        if [ "$EXEC" == "yes" ]; then
-            $COMPOSE exec vue-cli npm "$@"
-        else
-            $COMPOSE run --rm -w $WORKDIR vue-cli npm "$@"
-        fi
+        $COMPOSE run --rm -w $WORKDIR vue-cli npm "$@"
          
     # If "yarn" is used, run yarn
     # from our node container

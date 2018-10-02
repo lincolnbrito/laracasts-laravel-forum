@@ -13,7 +13,7 @@
                         </span>
 
                         @can('update', $thread)
-                        <form action=""{{ $thread->path() }} method="POST">
+                        <form action="{{ $thread->path() }}" method="POST">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
                             <button type="submit" class="btn btn-link">Delete Thread</button>
@@ -36,7 +36,7 @@
                 @include('threads.reply')
             @endforeach
 
-            {{ $replies->links() }}
+             {{ $replies->links() }}
 
             @if(auth()->check())
                 <form method="POST" action="{{ $thread->path() . '/replies' }}">

@@ -43135,7 +43135,7 @@ exports = module.exports = __webpack_require__(41)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.alert-flash{\n    position:fixed;\n    right: 25px;\n    bottom: 25px;\n}\n", ""]);
 
 // exports
 
@@ -43606,10 +43606,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['message'],
     data: function data() {
         return {
-            body: 'Temp for now'
+            body: '',
+            show: false
         };
+    },
+    created: function created() {
+        if (this.message) {
+            this.body = this.message;
+            this.show = true;
+        }
     }
 });
 
@@ -43623,7 +43631,13 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "alert alert-warning", attrs: { role: "alert" } },
+    {
+      directives: [
+        { name: "show", rawName: "v-show", value: _vm.show, expression: "show" }
+      ],
+      staticClass: "alert alert-warning alert-flash",
+      attrs: { role: "alert" }
+    },
     [_c("strong", [_vm._v("Success!")]), _vm._v(" " + _vm._s(_vm.body) + "\n")]
   )
 }
