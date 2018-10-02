@@ -43624,7 +43624,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
 
         window.events.$on('flash', function (message) {
-            _this.flash(message);
+            return _this.flash(message);
         });
     },
 
@@ -43659,7 +43659,7 @@ var render = function() {
       directives: [
         { name: "show", rawName: "v-show", value: _vm.show, expression: "show" }
       ],
-      staticClass: "alert alert-warning alert-flash",
+      staticClass: "alert alert-success alert-flash",
       attrs: { role: "alert" }
     },
     [_c("strong", [_vm._v("Success!")]), _vm._v(" " + _vm._s(_vm.body) + "\n")]
