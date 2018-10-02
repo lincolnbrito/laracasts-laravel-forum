@@ -1,3 +1,9 @@
+/**
+ * First we will load all of this project's JavaScript dependencies which
+ * includes Vue and other libraries. It is a great starting point when
+ * building robust, powerful web applications using Vue and Laravel.
+ */
+window.Vue = require('vue');
 
 window._ = require('lodash');
 
@@ -51,3 +57,9 @@ if (token) {
 //     broadcaster: 'pusher',
 //     key: 'your-pusher-key'
 // });
+
+window.events = new Vue();
+
+window.flash = function(message) {
+  window.events.$emit('flash', message);
+};

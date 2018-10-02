@@ -970,16 +970,7 @@ module.exports = __webpack_require__(47);
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 __webpack_require__(11);
-
-window.Vue = __webpack_require__(35);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -997,6 +988,12 @@ var app = new Vue({
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
+/**
+ * First we will load all of this project's JavaScript dependencies which
+ * includes Vue and other libraries. It is a great starting point when
+ * building robust, powerful web applications using Vue and Laravel.
+ */
+window.Vue = __webpack_require__(35);
 
 window._ = __webpack_require__(12);
 
@@ -1050,6 +1047,12 @@ if (token) {
 //     broadcaster: 'pusher',
 //     key: 'your-pusher-key'
 // });
+
+window.events = new Vue();
+
+window.flash = function (message) {
+  window.events.$emit('flash', message);
+};
 
 /***/ }),
 /* 12 */
@@ -43614,9 +43617,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     created: function created() {
+        var _this = this;
+
         if (this.message) {
-            this.body = this.message;
+            this.flash(this.message);
+        }
+
+        window.events.$on('flash', function (message) {
+            _this.flash(message);
+        });
+    },
+
+    methods: {
+        flash: function flash(message) {
+            this.body = message;
             this.show = true;
+
+            this.hide();
+        },
+        hide: function hide() {
+            var _this2 = this;
+
+            setTimeout(function () {
+                _this2.show = false;
+            }, 3000);
         }
     }
 });
